@@ -1,4 +1,4 @@
-package interview.сollection.cyclicLinkedList;
+package interview.сollection.cycliclinkedlist;
 
 import java.util.Iterator;
 

@@ -13,7 +13,5 @@ public class Test {
 
         WorkerRepository workerRepository = new WorkerRepository();
 
-        System.out.println(workerRepository.averageAgeSuccessFull());
-        System.out.println(workerRepository.getTheBestWorkerInHR());
     }
 }

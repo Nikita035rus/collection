@@ -33,104 +33,44 @@ public class WorkerRepository {
     }
 
     //Определить средний возраст всех принятых на работу
-    public double averageAgeSuccessFull() {
-        return success(true)
+    public double averageAge(boolean success) {
+        return success(success)
                 .keySet()
                 .stream()
                 .mapToInt(Worker::getAge)
                 .average()
                 .orElse(0.0);
     }
-
-    //Определить средний возраст всех непринятых на работу
-    public double averageAgeUnSuccessFull() {
-        return success(false)
-                .keySet()
-                .stream()
-                .mapToInt(Worker::getAge)
-                .average()
-                .orElse(0.0);
-    }
-
     //Определить самого сильного сотрудника из каждого отдела.
-    public Worker getTheBestWorkerInHR() {
+
+    public Worker getTheBestWorkerInProgrammer(Worker.Profession profession) {
         return success(true)
                 .entrySet()
                 .stream()
-                .filter(x -> x.getKey().getProfession().equals(Worker.Profession.HR))
+                .filter(x -> x.getKey().getProfession().equals(profession))
                 .max(Map.Entry.comparingByValue())
                 .orElseThrow()
                 .getKey();
     }
 
-    public Worker getTheBestWorkerInAnalise() {
-        return success(true)
-                .entrySet()
-                .stream()
-                .filter(x -> x.getKey().getProfession().equals(Worker.Profession.ANALYST))
-                .max(Map.Entry.comparingByValue())
-                .orElseThrow()
-                .getKey();
-    }
-
-    public Worker getTheBestWorkerInProgrammer() {
-        return success(true)
-                .entrySet()
-                .stream()
-                .filter(x -> x.getKey().getProfession().equals(Worker.Profession.PROGRAMMING))
-                .max(Map.Entry.comparingByValue())
-                .orElseThrow()
-                .getKey();
-    }
-
-    public Map<Worker, Double> getAllHR() {
+    public Map<Worker, Double> getAll(Worker.Profession profession) {
         return getWorkerMap().entrySet().stream()
-                .filter(x -> x.getKey().getProfession().equals(Worker.Profession.HR))
+                .filter(x -> x.getKey().getProfession().equals(profession))
                 .collect(Collectors.toMap(
                         Map.Entry::getKey,
                         Map.Entry::getValue));
     }
 
-    public Map<Worker, Double> getAllAnalise() {
+    public Map<Worker, Double> getAnaliseAndProgrammer(Worker.Profession first, Worker.Profession second) {
         return getWorkerMap()
                 .entrySet()
                 .stream()
-                .filter(x -> x.getKey().getProfession().equals(Worker.Profession.ANALYST))
+                .filter(x -> x.getKey().getProfession().equals(first) ||
+                        x.getKey().getProfession().equals(second))
                 .collect(Collectors.toMap(
                         Map.Entry::getKey,
                         Map.Entry::getValue));
     }
 
-    public Map<Worker, Double> getAnaliseAndProgrammer() {
-        return getWorkerMap()
-                .entrySet()
-                .stream()
-                .filter(x -> x.getKey().getProfession().equals(Worker.Profession.ANALYST) ||
-                        x.getKey().getProfession().equals(Worker.Profession.PROGRAMMING))
-                .collect(Collectors.toMap(
-                        Map.Entry::getKey,
-                        Map.Entry::getValue));
-    }
 
-    public Map<Worker, Double> getAnaliseAndHR() {
-        return getWorkerMap()
-                .entrySet()
-                .stream()
-                .filter(x -> x.getKey().getProfession().equals(Worker.Profession.ANALYST) ||
-                        x.getKey().getProfession().equals(Worker.Profession.HR))
-                .collect(Collectors.toMap(
-                        Map.Entry::getKey,
-                        Map.Entry::getValue));
-    }
-
-    public Map<Worker,Double> getHRandProgrammer() {
-        return getWorkerMap()
-                .entrySet()
-                .stream()
-                .filter(x->x.getKey().getProfession().equals(Worker.Profession.HR)||
-                        x.getKey().getProfession().equals(Worker.Profession.PROGRAMMING))
-                .collect(Collectors.toMap(
-                        Map.Entry::getKey,
-                        Map.Entry::getValue));
-    }
 }

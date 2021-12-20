@@ -1,4 +1,4 @@
-package interview.сollection.queueBank;
+package interview.сollection.queuebank;
 
 import java.util.concurrent.TimeUnit;
 

@@ -1,4 +1,4 @@
-package interview.сollection.queueBank;
+package interview.сollection.queuebank;
 
 import java.util.Deque;
 import java.util.Random;

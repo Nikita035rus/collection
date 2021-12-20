@@ -2,21 +2,15 @@ package interview.сollection.website.entity;
 
 import java.util.Objects;
 
-public class Login {
+public class User {
     private final String login;
     private final String password;
-    private String doublePassword;
 
-    public Login(String login, String password, String doublePassword) {
+
+    public User(String login, String password) {
         this.login = login;
         this.password = password;
-        this.doublePassword = doublePassword;
-    }
 
-    public Login(String login, String password) {
-
-        this.login = login;
-        this.password = password;
     }
     public String getLogin() {
         return login;
@@ -24,10 +18,6 @@ public class Login {
 
     public String getPassword() {
         return password;
-    }
-
-    public String getDoublePassword() {
-        return doublePassword;
     }
 
     @Override
@@ -40,7 +30,7 @@ public class Login {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Login login1 = (Login) o;
+        User login1 = (User) o;
         return Objects.equals(login, login1.login) && Objects.equals(password, login1.password);
     }
 

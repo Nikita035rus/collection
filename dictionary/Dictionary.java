@@ -1,14 +1,11 @@
 package interview.сollection.dictionary;
 
-import java.util.Map;
-import java.util.Optional;
-import java.util.Scanner;
-import java.util.TreeMap;
+import java.util.*;
 
 public class Dictionary {
     private String russianWord;
     private String englishWord;
-    private static final Map<String, String> interpreter = new TreeMap<>();
+    private static final Map<String, String> interpreter = new HashMap<>();
     /* выбрад TreeMap только для дальнейшего использования,
      * если нам больше ничего делать с коллекцией не нужно,
      * то тогда HashMap*/

@@ -1,4 +1,4 @@
-package interview.сollection.hashInSortHash;
+package interview.сollection.hashinsorthash;
 
 import java.util.*;
 

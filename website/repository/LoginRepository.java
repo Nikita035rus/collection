@@ -1,22 +1,22 @@
 package interview.сollection.website.repository;
 
-import interview.сollection.website.entity.Login;
+import interview.сollection.website.entity.User;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 public class LoginRepository {
-    private static final Set<Login> accounts = new HashSet<>();
+    private static final Set<User> accounts = new HashSet<>();
 
     static {
-        accounts.add(new Login("admin", "admin"));
+        accounts.add(new User("admin", "admin"));
     }
 
-    public boolean contains(Login login) {
+    public boolean contains(User login) {
         return accounts.contains(login);
     }
 
-    public void add(Login login) {
+    public void add(User login) {
         accounts.add(login);
     }
 

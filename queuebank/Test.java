@@ -2,6 +2,8 @@ package interview.сollection.queuebank;
 
 import java.util.concurrent.TimeUnit;
 
+
+
 public class Test {
     public static void main(String[] args) throws InterruptedException {
         Thread thread1 = new Thread(() -> {
@@ -12,7 +14,7 @@ public class Test {
                 ATMQueue.countPerson.incrementAndGet();
                 atmQueue.add(person);
                 try {
-                    TimeUnit.MILLISECONDS.sleep(person.getTime());
+                    TimeUnit.MILLISECONDS.sleep(atmQueue.getTime());
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -22,9 +24,9 @@ public class Test {
         Thread thread2 = new Thread(() -> {
             ATMQueue atmQueue = new ATMQueue();
             while (ATMQueue.countPerson.get() < 100) {
-                atmQueue.remove();
                 try {
-                    TimeUnit.MILLISECONDS.sleep(atmQueue.getWorkingTimeOf1Person());
+                    TimeUnit.MILLISECONDS.sleep(atmQueue.getServiceTime());
+                    atmQueue.remove();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -37,7 +39,7 @@ public class Test {
         thread1.join();
         thread2.join();
 
-        System.out.println("People funny: " + Person.funny);
-        System.out.println("People upset: " + Person.upset);
+        System.out.println("People funny: " + ATMQueue.funny);
+        System.out.println("People upset: " + ATMQueue.upset);
     }
 }
